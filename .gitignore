@@ -38,3 +38,6 @@ jspm_packages
 
 # VS Code files
 .vscode
+
+# Heroku local config
+.env
