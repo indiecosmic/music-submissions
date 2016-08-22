@@ -2,8 +2,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var submissionSchema = new Schema({
-    name: String,
-    email: String,
+    artist: String,
+    message: String,
+    website: String,
+    links: [String],
+    contact: {
+        name: String,
+        email: String
+    },
     created_at: { type: Date, default: Date.now }
 });
 
