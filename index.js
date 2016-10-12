@@ -52,8 +52,16 @@ app.post('/form', function(request, response) {
 	response.send('You posted something!');
 	console.log('Form post', request.body);
   var submission = new Submission({
-    name: request.body.name,
-    email: request.body.email
+    artist: request.body.artist,
+    message: request.body.message,
+    website: request.body.website,
+    contact: {
+      name: request.body.name,
+      email: request.body.email
+    }
+  });
+  request.body.links.forEach(function (link) {
+    submission.links.push(link);
   });
   submission.save(function(error) {
     if (error)

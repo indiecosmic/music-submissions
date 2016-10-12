@@ -8,19 +8,33 @@
 
   <% include ../partials/nav.ejs %>
 
-<div class="jumbotron text-center">
-  <div class="container">
-    <a href="/" class="lang-logo">
-      <img src="/lang-logo.png">
-    </a>
-    <h1>Getting Started with Node on Heroku</h1>
-    <p>This is a sample Node application deployed to Heroku. It's a reasonably simple app - but a good foundation for understanding how to get the most out of the Heroku platform.</p>
-    <a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/articles/getting-started-with-nodejs"><span class="glyphicon glyphicon-flash"></span> Getting Started with Node</a>
-    <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/node-js-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
-  </div>
-</div>
 <div class="container">
   <form method="post" type="application/x-www-form-urlencoded">
+    <div class="form-group">
+      <label for="artist">Artist / namn</label>
+      <input type="text" class="form-control" id="artist" name="artist" placeholder="Artist / namn" />
+    </div>
+    <div class="form-group">
+      <label for="website">Hemsida</label>
+      <input type="text" class="form-control" id="website" name="website" placeholder="L&auml;nk till hemsida, Facebook eller liknande" />
+    </div>
+    <div class="form-group">
+      <label for="links">Lyssningsl&auml;nkar</label>
+      <div class="links-container">
+        <div class="input-group form-group entry">
+          <input type="text" class="form-control" id="links" name="links[]" placeholder="L&auml;nk" />
+          <span class="input-group-btn">
+            <button class="btn btn-primary btn-add" type="button">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="message">Meddelande</label>
+      <textarea class="form-control" rows="5" id="message" name="message" placeholder="H&auml;r kan ni ber&auml;tta lite om er sj&auml;va"></textarea>
+    </div>
     <div class="form-group">
       <label for="name">Namn</label>
       <input type="text" class="form-control" id="name" name="name" placeholder="Namn" />
