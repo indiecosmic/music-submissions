@@ -60,7 +60,8 @@ app.post('/form', function(request, response) {
       email: request.body.email
     }
   });
-  request.body.links.forEach(function (link) {
+  
+  request.body['links[]'].forEach(function (link) {
     submission.links.push(link);
   });
   submission.save(function(error) {
