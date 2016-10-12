@@ -52,9 +52,15 @@ app.post('/form', function(request, response) {
 	response.send('You posted something!');
 	console.log('Form post', request.body);
   var submission = new Submission({
-    name: request.body.name,
-    email: request.body.email
+    artist: request.body.artist,
+    message: request.body.message,
+    website: request.body.website,
+    contact: {
+      name: request.body.name,
+      email: request.body.email
+    }
   });
+  submission.links.push('http://heavenuphere.se', 'https://facebook.com/heavenuphere');
   submission.save(function(error) {
     if (error)
       console.log(error);
