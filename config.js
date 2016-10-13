@@ -14,5 +14,8 @@ module.exports = {
             }
         }
     },
-    dev: process.env.ENV
+    dev: process.env.ENV,
+    postmarkApiToken: process.env.POSTMARK_API_TOKEN,
+    senderEmailAddress: process.env.SENDER_EMAIL_ADDRESS,
+    recipientEmailAddress: process.env.RECIPIENT_EMAIL_ADDRESS
 }
