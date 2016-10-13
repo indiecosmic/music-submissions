@@ -7,8 +7,16 @@
                 currentEntry = $(this).parents('.entry:first'),
                 newEntry = $(currentEntry.clone());
             newEntry.find('input').val('');
-
             newEntry.appendTo(controlForm);
+            controlForm.find('.entry:not(:last) .btn-add')
+                .removeClass('btn-add').addClass('btn-remove')
+                .removeClass('btn-success').addClass('btn-danger')
+                .html('<span class="glyphicon glyphicon-minus"></span>');
+        },
+        onRemoveButtonClick: function(event) {
+            event.preventDefault();
+
+            $(this).parents('.entry:first').remove();
         },
         onFormSubmit: function (event) {
             event.preventDefault();
@@ -19,17 +27,18 @@
                 data: $(this).serialize(),
                 dataType: 'json'
             })
-            .done(app.onSubmitSuccess)
-            .fail(app.onSubmitError);
+                .done(app.onSubmitSuccess)
+                .fail(app.onSubmitError);
         },
-        onSubmitSuccess: function(data, status) {
+        onSubmitSuccess: function (data, status) {
             console.log(data, status);
         },
-        onSubmitError: function( jqXHR, status, error) {
+        onSubmitError: function (jqXHR, status, error) {
             console.error(status, error);
         }
     };
 
     $(document).on('click', '.btn-add', app.onAddLinkButtonClick);
+    $(document).on('click', '.btn-remove', app.onRemoveButtonClick);
     $('form').on('submit', app.onFormSubmit);
 } (jQuery));
