@@ -3,19 +3,20 @@ var bodyParser = require('body-parser');
 
 var config = require('./config');
 var routes = require('./routes/index');
-var submission = require('./routes/submission');
+var submissions = require('./routes/api/submissions');
 
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.use('/', routes);
-app.use('/submission', submission);
+app.use('/api/submissions', submissions);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

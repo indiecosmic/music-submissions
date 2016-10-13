@@ -1,10 +1,20 @@
 var express = require('express');
 
-var Submission = require('../models/submission');
+var Submission = require('../../models/submission');
 var router = express.Router();
 
 router.get('/', function (request, response) {
-    response.render('pages/form');
+    Submission.find({}, function(error, submissions) {
+        if (!error) {
+            response.send(submissions);
+        }
+    });
+});
+
+router.get('/:submission_id', function(request, response) {
+    Submission.findById(request.params.submission_id, function(error, submission) {
+        response.send(submission);
+    });
 });
 
 router.post('/', function (request, response) {
@@ -28,7 +38,7 @@ router.post('/', function (request, response) {
         else
             console.log('Saved', submission);
     });
-    response.send('You posted something!');
+    response.send(submission);
 });
 
 module.exports = router;
