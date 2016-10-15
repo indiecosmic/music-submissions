@@ -21,6 +21,15 @@ a {
   margin-top: 50px;
 }
 
+.panel {
+  background-color: transparent;
+  margin-bottom: 0;
+}
+.panel-body {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 footer a {
   display: inline-block;
   color: #333;
