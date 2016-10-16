@@ -15,6 +15,7 @@ a {
 }
 
 .logo {
+  width: 100%;
   max-width: 473px;
 }
 .jumbotron {
