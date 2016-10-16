@@ -18,6 +18,16 @@ app.set('view engine', 'ejs');
 app.use('/', routes);
 app.use('/api/submissions', submissions);
 
+app.use('/api', function (err, req, res, next) {
+    // use the error's status or default to 500
+    res.status(err.status || 500);
+
+    // send back json data
+    res.send({
+        error: err.message
+    })
+});
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
