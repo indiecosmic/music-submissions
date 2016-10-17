@@ -50,32 +50,42 @@ router.post('/', function (request, response, next) {
             email: request.body.email
         }
     });
-
-    request.body['links[]'].forEach(function (link) {
-        submission.links.push(link);
-    });
+    var links = request.body['links[]'];
+    if (links instanceof Array) {
+        links.forEach(link => {
+            submission.links.push(link);
+        });
+    } else {
+        submission.links.push(links);
+    }
+    
     submission.save(function (error) {
-        if (error)
-            console.log(error);
-        else {
-            console.log('Saved', submission);
-            postmark.send({
-                "From": config.senderEmailAddress,
-                "To": config.recipientEmailAddress,
-                "Subject": "Hello from Postmark",
-                "TextBody": "Hello!",
-                "ReplyTo": submission.contact.email
-            }, function (error, success) {
-                if (error) {
-                    console.error("Unable to send via postmark: " + error.message);
-                    return;
-                }
-                console.info("Sent to postmark for delivery")
-            });
-        }
+        if (error) return next(error);
 
+        console.log('Saved', submission);
+        postmark.sendEmailWithTemplate({
+            "From": config.senderEmailAddress,
+            "To": config.recipientEmailAddress,
+            "ReplyTo": submission.contact.email,
+            "TemplateId": config.notificationTemplateId,
+            "TemplateModel": {
+                "artist": submission.artist,
+                "website": submission.website,
+                "message": submission.message,
+                "name": submission.contact.name,
+                "email": submission.contact.email,
+                "links": submission.links.map(function (link) { return { "link": link } })
+            }
+
+        }, function (error, success) {
+            if (error) return next(error);
+
+            console.info("Sent to postmark for delivery");
+        });
     });
+
     response.send(submission);
+
 });
 
 module.exports = router;
