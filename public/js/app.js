@@ -31,7 +31,14 @@
                 .fail(app.onSubmitError);
         },
         onSubmitSuccess: function (data, status) {
-            console.log(data, status);
+            $(".form-group").removeClass('has-error');
+
+            if (data.error) {
+                data.error.forEach(function (error) {
+                    $("input[name='" + error.param + "']").parents('.form-group').addClass('has-error');
+                    $("textarea[name='" + error.param + "']").parents('.form-group').addClass('has-error');
+                });
+            }
         },
         onSubmitError: function (jqXHR, status, error) {
             console.error(status, error);

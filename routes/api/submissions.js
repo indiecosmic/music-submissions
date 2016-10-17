@@ -19,8 +19,28 @@ router.get('/:submission_id', function (request, response) {
     });
 });
 
-router.post('/', function (request, response) {
+router.post('/', function (request, response, next) {
     console.log('Form post', request.body);
+
+    request.checkBody('artist', 'Ange ett artistnamn.').notEmpty();
+    request.checkBody('website', 'Ange en webbadress.')
+        .notEmpty()
+        .isURL().withMessage('Ange en giltig webbadress.');
+    request.checkBody('links[]', 'Ange minst en lyssningsl&auml;nk.')
+        .notEmpty()
+        .notEmptyArray();
+    request.checkBody('message', 'Ange ett meddelande.').notEmpty();
+    request.checkBody('name', 'Ange ett namn.').notEmpty();
+    request.checkBody('email', 'Ange en giltig e-postadress.')
+        .notEmpty().withMessage('Ange en e-postadress.')
+        .isEmail();
+
+    var validationErrors = request.validationErrors();
+    if (validationErrors) {
+        response.send({ error: validationErrors });
+        return;
+    }
+
     var submission = new Submission({
         artist: request.body.artist,
         message: request.body.message,

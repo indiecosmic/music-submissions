@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var validator = require('express-validator');
 
 var config = require('./config');
 var routes = require('./routes/index');
@@ -10,6 +11,19 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(validator({
+    customValidators: {
+        notEmptyArray: function(input) {
+            if (input instanceof Array) {
+                var isValid = input.every(function (val) {
+                    if (!val) return false;
+                });
+                return isValid;
+            }
+            return true;
+        }
+    }
+}));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
