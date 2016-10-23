@@ -1,0 +1,54 @@
+<form method="post" action="/api/submissions">
+    <div class="panel">
+    <div class="panel-heading">
+      Artistinfo och l&auml;nkar
+    </div>
+    <div class="panel-body">
+    <div class="form-group">
+      <label class="control-label" for="artist">Artist / namn</label>
+      <input type="text" class="form-control" id="artist" name="artist" placeholder="Artist / namn" required />
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="website">Hemsida</label>
+      <input type="text" class="form-control" id="website" name="website" placeholder="L&auml;nk till hemsida, Facebook eller liknande" required />
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="links">Lyssningsl&auml;nkar</label>
+      <div class="links-container">
+        <div class="input-group form-group entry">
+          <input type="text" class="form-control" id="links" name="links[]" placeholder="L&auml;nk" required />
+          <span class="input-group-btn">
+            <button class="btn btn-primary btn-add" type="button">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="message">Meddelande</label>
+      <textarea class="form-control" rows="5" id="message" name="message" placeholder="H&auml;r kan ni ber&auml;tta lite om er sj&auml;va" required></textarea>
+    </div>
+    </div>
+    </div>
+    <div class="panel">
+      <div class="panel-heading">
+        Kontaktuppgifter
+      </div>
+      <div class="panel-body">
+      <div class="form-group">
+        <label class="control-label" for="name">Namn</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Namn" required />
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="email">E-post</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="E-post" required />
+      </div>
+    </div>
+    </div>
+    <div class="panel">
+    <div class="panel-body">
+    <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+    </div>
+  </form>
