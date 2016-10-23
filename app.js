@@ -29,6 +29,8 @@ app.use(validator({
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+app.locals.gaTrackingId = config.gaTrackingId;
+
 app.use('/', routes);
 app.use('/api/submissions', submissions);
 
