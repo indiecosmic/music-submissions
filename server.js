@@ -47,7 +47,7 @@ function onError(error) {
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database, config.databaseOptions);
 mongoose.connection.on('error', function () {
-  console.error.bind(console, 'Connection error: could not connect to MongoDB');
+  console.error('Connection error: could not connect to MongoDB');
 });
 mongoose.connection.once('open', function () {
   console.log('Connection to database open!');

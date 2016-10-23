@@ -62,7 +62,7 @@ router.post('/', function (request, response, next) {
     submission.save(function (error) {
         if (error) return next(error);
 
-        console.log('Saved', submission);
+        console.info('Saved', submission);
         postmark.sendEmailWithTemplate({
             "From": config.senderEmailAddress,
             "To": config.recipientEmailAddress,

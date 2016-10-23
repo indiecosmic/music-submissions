@@ -20,6 +20,10 @@
         },
         onFormSubmit: function (event) {
             event.preventDefault();
+            var $submitButton = $('button[type="submit"]');
+            $submitButton
+                .addClass('disabled')
+                .prop('disabled', true);
 
             $.ajax({
                 url: $(this).attr('action'),
@@ -28,21 +32,30 @@
                 dataType: 'json'
             })
                 .done(app.onSubmitSuccess)
-                .fail(app.onSubmitError);
+                .fail(app.onSubmitError)
+                .always(app.onSubmitComplete);
+
         },
         onSubmitSuccess: function (data, status) {
             $(".form-group").removeClass('has-error');
 
             if (data.error) {
                 data.error.forEach(function (error) {
-                    console.error(error);
                     $("input[name='" + error.param + "']").parents('.form-group').addClass('has-error');
                     $("textarea[name='" + error.param + "']").parents('.form-group').addClass('has-error');
                 });
+                return;
             }
+            window.location = 'tack';
         },
         onSubmitError: function (jqXHR, status, error) {
             console.error(status, error);
+        },
+        onSubmitComplete: function () {
+            var $submitButton = $('button[type="submit"]');
+            $submitButton
+                .removeClass('disabled')
+                .prop('disabled', false);
         }
     };
     $('#add-links-button').click(app.onAddLinkButtonClick);

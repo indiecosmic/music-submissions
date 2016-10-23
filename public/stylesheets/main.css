@@ -30,6 +30,21 @@ a {
   padding-top: 0;
   padding-bottom: 0;
 }
+.main-container {
+  margin-bottom: 30px;
+}
+
+.btn-default {
+  background-color: #ebebe2;
+}
+
+button[type="submit"] {
+  transition: .3s;
+  font-weight: 700;
+}
+button[type="submit"]:hover {
+  background-color: #fbd10d;
+}
 
 footer a {
   display: inline-block;
