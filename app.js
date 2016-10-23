@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(validator({
     customValidators: {
-        notEmptyArray: function(input) {
+        notEmptyArray: function (input) {
             if (input instanceof Array) {
                 var isValid = input.every(function (val) {
-                    if (!val) return false;
+                    return !!val;
                 });
                 return isValid;
             }
