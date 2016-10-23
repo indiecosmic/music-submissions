@@ -8,7 +8,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "gulp build"
+    "preinstall": "gulp build"
   },
   "dependencies": {
     "body-parser": "1.15.2",
