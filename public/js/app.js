@@ -7,8 +7,11 @@
                 $clone = $template
                     .clone()
                     .removeClass('hide')
-                    .removeAttr('id')
-                    .insertBefore($template);
+                    .removeAttr('id');
+            $clone.find('input')
+                .attr('name', 'links[]')
+                .prop('required', true);
+            $clone.insertBefore($template);
         },
         onRemoveButtonClick: function (event) {
             event.preventDefault();
@@ -32,6 +35,7 @@
 
             if (data.error) {
                 data.error.forEach(function (error) {
+                    console.error(error);
                     $("input[name='" + error.param + "']").parents('.form-group').addClass('has-error');
                     $("textarea[name='" + error.param + "']").parents('.form-group').addClass('has-error');
                 });
