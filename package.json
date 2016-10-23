@@ -7,16 +7,13 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "preinstall": "gulp build"
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "1.15.2",
     "ejs": "2.4.1",
     "express": "4.13.3",
     "express-validator": "^2.20.10",
-    "gulp": "^3.9.1",
-    "gulp-uglify": "^2.0.0",
     "mongoose": "4.5.9",
     "postmark": "^1.2.1"
   },
