@@ -3,17 +3,14 @@
         onAddLinkButtonClick: function (event) {
             event.preventDefault();
 
-            var controlForm = $('.links-container'),
-                currentEntry = $(this).parents('.entry:first'),
-                newEntry = $(currentEntry.clone());
-            newEntry.find('input').val('');
-            newEntry.appendTo(controlForm);
-            controlForm.find('.entry:not(:last) .btn-add')
-                .removeClass('btn-add').addClass('btn-remove')
-                .removeClass('btn-success').addClass('btn-danger')
-                .html('<span class="glyphicon glyphicon-minus"></span>');
+            var $template = $('#linkTemplate'),
+                $clone = $template
+                    .clone()
+                    .removeClass('hide')
+                    .removeAttr('id')
+                    .insertBefore($template);
         },
-        onRemoveButtonClick: function(event) {
+        onRemoveButtonClick: function (event) {
             event.preventDefault();
 
             $(this).parents('.entry:first').remove();
@@ -44,8 +41,7 @@
             console.error(status, error);
         }
     };
-
-    $(document).on('click', '.btn-add', app.onAddLinkButtonClick);
+    $('#add-links-button').click(app.onAddLinkButtonClick);
     $(document).on('click', '.btn-remove', app.onRemoveButtonClick);
     $('form').on('submit', app.onFormSubmit);
 } (jQuery));
