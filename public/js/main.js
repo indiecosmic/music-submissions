@@ -1,4 +1,5 @@
-define(['jquery', 'font-awesome', 'bootstrap'], function ($) {
+define(['jquery', 'validator', 'font-awesome', 'bootstrap'], function ($, validator) {
+    'use strict';
     var app = {
         onAddLinkButtonClick: function (event) {
             event.preventDefault();
@@ -56,9 +57,29 @@ define(['jquery', 'font-awesome', 'bootstrap'], function ($) {
             $submitButton
                 .removeClass('disabled')
                 .prop('disabled', false);
+        },
+        validateRequired: function (event) {
+            var $this = $(this),
+                $formGroup = $this.parents('.form-group');
+            if (validator.isEmpty($this.val())) {
+                $formGroup.addClass('has-error');
+            } else {
+                $formGroup.removeClass('has-error');
+            }
+        },
+        validateUrl: function (event) {
+            var $this = $(this),
+                $formGroup = $this.parents('.form-group');
+            if (!validator.isURL($this.val())) {
+                $formGroup.addClass('has-error');
+            } else {
+                $formGroup.removeClass('has-error');
+            }
         }
     };
     $('#add-links-button').click(app.onAddLinkButtonClick);
     $(document).on('click', '.btn-remove', app.onRemoveButtonClick);
     $('form').on('submit', app.onFormSubmit);
+    $('input[name="artist"]').on('blur', app.validateRequired);
+    $('input[name="website"]').on('blur', app.validateUrl);
 });
