@@ -82,12 +82,12 @@ router.post('/', function (request, response, next) {
             console.info("Sent notification email to postmark for delivery");
 
             postmark.sendEmailWithTemplate({
-                "From": "config.senderEmailAddress",
-                "To": "submission.contact.email",
+                "From": config.senderEmailAddress,
+                "To": submission.contact.email,
                 "TemplateId": config.thankYouEmailTemplateId,
                 "TemplateModel": {
-                    "name": "submission.contact.name",
-                    "artist": "submission.artist"
+                    "name": submission.contact.name,
+                    "artist": submission.artist
                 }
             }, function (error, success) {
                 if (error) return next(error);
