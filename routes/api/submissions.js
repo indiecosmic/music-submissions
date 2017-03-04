@@ -79,8 +79,20 @@ router.post('/', function (request, response, next) {
 
         }, function (error, success) {
             if (error) return next(error);
+            console.info("Sent notification email to postmark for delivery");
 
-            console.info("Sent to postmark for delivery");
+            postmark.sendEmailWithTemplate({
+                "From": "config.senderEmailAddress",
+                "To": "submission.contact.email",
+                "TemplateId": config.thankYouEmailTemplateId,
+                "TemplateModel": {
+                    "name": "submission.contact.name",
+                    "artist": "submission.artist"
+                }
+            }, function (error, success) {
+                if (error) return next(error);
+                console.info("Sent thank you email to postmark for delivery");
+            });
         });
     });
 
