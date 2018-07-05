@@ -7,12 +7,12 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "body-parser": "1.16.0",
-    "ejs": "2.5.5",
-    "express": "4.14.1",
-    "express-validator": "3.1.2",
-    "mongoose": "4.8.1",
-    "postmark": "^1.2.1"
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-validator": "^5.2.0",
+    "mongoose": "^5.2.1",
+    "postmark": "^1.6.1"
   },
   "repository": {
     "type": "git",
