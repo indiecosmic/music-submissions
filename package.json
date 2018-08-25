@@ -10,8 +10,8 @@
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "express-validator": "^5.2.0",
-    "mongoose": "^5.2.1",
+    "express-validator": "^5.3.0",
+    "mongoose": "^5.2.9",
     "postmark": "^1.6.1"
   },
   "repository": {
