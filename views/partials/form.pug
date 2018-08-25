@@ -1,0 +1,36 @@
+form(method="post" action="/api/submissions")
+    div.panel
+        div.panel-heading Artistinfo och l&auml;nkar
+        div.panel-body
+            div.form-group
+                label.control-label(for="artist") Artist / namn
+                input#artist.form-control(name="artist" type="text" placeholder="Artist / namn" required)
+            div.form-group
+                label.control-label(for="website") Hemsida
+                input#website.form-control(name="website", type="text", placeholder="Länk till hemsida, Facebook eller liknande", required)
+            div.form-group
+                label.control-label(for="links") Lyssningsl&auml;nkar
+                div.links-container
+                    div.form-group
+                        input#links.form-control(name="links[]" type="text" placeholder="Länk" required)
+                    div#linkTemplate.input-group.form-group.entry.hide
+                        input.form-control(type="text" placeholder="Länk")
+                        span.input-group-btn
+                            button.btn.btn-danger.btn-remove(type="button")
+                                span.glyphicon.glyphicon-minus
+                button#add-links-button.btn.btn-default.btn-add(type="button") L&auml;gg till fler l&auml;nkar
+            div.form-group
+                label.control-label(for="message") Meddelande
+                textarea#message.form-control(name="message" rows="5" placeholder="Här kan ni berätta lite om er själva" required)
+    div.panel
+        div.panel-heading Kontaktuppgifter
+        div.panel-body
+            div.form-group
+                label.control-label(for="name") Namn
+                input#name.form-control(name="name" type="text" placeholder="Namn" required)
+            div.form-group
+                label.control-label(for="email") E-post
+                input#email.form-control(name="email" type="email" placeholder="E-post" required)
+    div.panel
+        div.panel-body
+            button.btn.btn-default(type="submit") Skicka
