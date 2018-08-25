@@ -1,19 +1,8 @@
+var dotenv = require('dotenv');
+dotenv.load();
+
 module.exports = {
     database: process.env.MONGODB_URI,
-    databaseOptions: {
-        server: {
-            socketOptions: {
-                keepAlive: 300000,
-                connectTimeoutMS: 30000
-            }
-        },
-        replset: {
-            socketOptions: {
-                keepAlive: 300000,
-                connectTimeoutMS: 30000
-            }
-        }
-    },
     dev: process.env.ENV,
     postmarkApiToken: process.env.POSTMARK_API_TOKEN,
     senderEmailAddress: process.env.SENDER_EMAIL_ADDRESS,

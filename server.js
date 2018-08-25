@@ -14,9 +14,9 @@ server.on('error', onError);
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  var bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
   console.log('Node app is running on port', bind);
 }
 
@@ -25,9 +25,9 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -45,7 +45,7 @@ function onError(error) {
 }
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.database, config.databaseOptions);
+mongoose.connect(config.database, { useNewUrlParser: true });
 mongoose.connection.on('error', function () {
   console.error('Connection error: could not connect to MongoDB');
 });
